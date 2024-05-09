@@ -52,7 +52,7 @@ public class MovieListingDao {
     }
 
     public void addToFavorites(Movie movie) {
-        if (currentUser == null) {
+        if (currentUser != null) {
             List<Movie> favorites = currentUser.getFavorites();
             favorites.add(movie);
         }

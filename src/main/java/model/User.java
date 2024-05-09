@@ -22,6 +22,7 @@ public class User {
     }
 
     public String getFavoritesStr() {
-        return String.join(", ", favorites.stream().map(Movie::getTitle).collect(Collectors.toList()));
+        List<String> titles = favorites.stream().map(Movie::getTitle).collect(Collectors.toList());
+        return String.join(", ", titles);
     }
 }

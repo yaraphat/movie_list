@@ -165,4 +165,14 @@ public class OperationService {
         }
     }
 
+    public void viewPersonalDetails(Scanner scanner) {
+        boolean registered = checkRegistration(scanner);
+        if (registered) {
+            User user = dao.getCurrentUser();
+            System.out.println("Personal Details:");
+            System.out.println("Email: " + user.getEmail());
+            System.out.println("Favorites: " + user.getFavoritesStr());
+        }
+    }
+
 }

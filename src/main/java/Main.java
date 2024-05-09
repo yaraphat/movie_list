@@ -12,6 +12,7 @@ public class Main {
         try (Scanner scanner = new Scanner(System.in)) {
             printOptions();
             while (true) {
+                System.out.println("");
                 System.out.print("Enter your choice (Any number from 1 to 9): ");
                 int choice = 0;
                 try {
@@ -36,6 +37,9 @@ public class Main {
                         break;
                     case 5:
                         service.removeMovieFromFavorites(scanner);
+                        break;
+                    case 6:
+                        service.viewPersonalDetails(scanner);
                         break;
                     case 8:
                         printOptions();
