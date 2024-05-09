@@ -129,10 +129,7 @@ public class OperationService {
         if (user == null) {
             System.out.println("Please register first");
             registerUser(scanner);
-            user = dao.getCurrentUser();
-            if (user == null) {
-                return false;
-            }
+            return dao.getCurrentUser() != null;
         }
         return true;
     }
@@ -140,6 +137,21 @@ public class OperationService {
     public boolean isValidEmail(String email) {
         return email != null
                 && email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
+    }
+
+    public void removeMovieFromFavorites(Scanner scanner) {
+        boolean registered = checkRegistration(scanner);
+        if (registered) {
+            System.out.println("Enter movie title to remove from favorites: ");
+            String title = scanner.nextLine();
+            Movie movie = dao.findMovieByTitle(title);
+            if (movie != null) {
+                dao.removeFromFavorites(movie);
+                System.out.println("Movie removed from favorites");
+            } else {
+                System.out.println("No movie found with title: " + title);
+            }
+        }
     }
 
 }
