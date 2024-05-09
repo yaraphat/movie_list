@@ -2,11 +2,11 @@ package main.java.dao;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 import main.java.model.Movie;
 import main.java.model.User;
+import main.java.util.DateUtil;
 
 public class MovieListingDao {
     private List<Movie> movies;
@@ -107,34 +107,34 @@ public class MovieListingDao {
         List<Movie> movies = new ArrayList<>();
 
         movies.add(new Movie("The Shawshank Redemption", List.of("Tim Robbins", "Morgan Freeman"), "Drama",
-                new Date(94, 9, 14), 25000000));
-        movies.add(new Movie("The Godfather", List.of("Marlon Brando", "Al Pacino"), "Crime", new Date(72, 2, 24),
+                DateUtil.getDate("1994-09-14"), 25000000));
+        movies.add(new Movie("The Godfather", List.of("Marlon Brando", "Al Pacino"), "Crime", DateUtil.getDate("1972-02-24"),
                 6000000));
         movies.add(new Movie("The Dark Knight", List.of("Christian Bale", "Heath Ledger"), "Action",
-                new Date(108, 6, 18), 185000000));
+                DateUtil.getDate("2008-07-18"), 185000000));
         movies.add(new Movie("Schindler's List", List.of("Liam Neeson", "Ben Kingsley"), "Biography",
-                new Date(93, 11, 15), 22000000));
-        movies.add(new Movie("Pulp Fiction", List.of("John Travolta", "Uma Thurman"), "Crime", new Date(94, 9, 14),
+                DateUtil.getDate("1993-02-04"), 22000000));
+        movies.add(new Movie("Pulp Fiction", List.of("John Travolta", "Uma Thurman"), "Crime", DateUtil.getDate("1994-09-14"),
                 8000000));
         movies.add(new Movie("The Lord of the Rings: The Return of the King", List.of("Elijah Wood", "Viggo Mortensen"),
-                "Adventure", new Date(103, 11, 17), 94000000));
+                "Adventure", DateUtil.getDate("2003-12-01"), 94000000));
         movies.add(
-                new Movie("Forrest Gump", List.of("Tom Hanks", "Robin Wright"), "Drama", new Date(94, 6, 6), 55000000));
-        movies.add(new Movie("The Matrix", List.of("Keanu Reeves", "Laurence Fishburne"), "Action", new Date(99, 2, 31),
+                new Movie("Forrest Gump", List.of("Tom Hanks", "Robin Wright"), "Drama", DateUtil.getDate("1994-06-23"), 55000000));
+        movies.add(new Movie("The Matrix", List.of("Keanu Reeves", "Laurence Fishburne"), "Action", DateUtil.getDate("1999-03-31"),
                 63000000));
         movies.add(new Movie("Inception", List.of("Leonardo DiCaprio", "Joseph Gordon-Levitt"), "Action",
-                new Date(110, 6, 16), 160000000));
+                DateUtil.getDate("2010-07-16"), 160000000));
         movies.add(new Movie("The Silence of the Lambs", List.of("Jodie Foster", "Anthony Hopkins"), "Crime",
-                new Date(91, 1, 14), 19000000));
+                DateUtil.getDate("1991-02-14"), 19000000));
         movies.add(new Movie("The Green Mile", List.of("Tom Hanks", "Michael Clarke Duncan"), "Drama",
-                new Date(99, 11, 10), 60000000));
-        movies.add(new Movie("Saving Private Ryan", List.of("Tom Hanks", "Matt Damon"), "Drama", new Date(98, 6, 24),
+                DateUtil.getDate("1999-12-10"), 60000000));
+        movies.add(new Movie("Saving Private Ryan", List.of("Tom Hanks", "Matt Damon"), "Drama", DateUtil.getDate("1998-07-24"),
                 70000000));
-        movies.add(new Movie("Gladiator", List.of("Russell Crowe", "Joaquin Phoenix"), "Action", new Date(100, 4, 5),
+        movies.add(new Movie("Gladiator", List.of("Russell Crowe", "Joaquin Phoenix"), "Action", DateUtil.getDate("2000-05-01"),
                 103000000));
-        movies.add(new Movie("Titanic", List.of("Leonardo DiCaprio", "Kate Winslet"), "Romance", new Date(97, 11, 19),
+        movies.add(new Movie("Titanic", List.of("Leonardo DiCaprio", "Kate Winslet"), "Romance", DateUtil.getDate("1997-12-19"),
                 200000000));
-        movies.add(new Movie("Avatar", List.of("Sam Worthington", "Zoe Saldana"), "Action", new Date(109, 11, 18),
+        movies.add(new Movie("Avatar", List.of("Sam Worthington", "Zoe Saldana"), "Action", DateUtil.getDate("2009-12-18"),
                 237000000));
 
         return movies;
