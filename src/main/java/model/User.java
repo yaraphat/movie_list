@@ -2,6 +2,7 @@ package main.java.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class User {
     private String email;
@@ -20,11 +21,7 @@ public class User {
         return favorites;
     }
 
-    public void addToFavorites(Movie movie) {
-        favorites.add(movie);
-    }
-
-    public void removeFromFavorites(Movie movie) {
-        favorites.remove(movie);
+    public String getFavoritesStr() {
+        return String.join(", ", favorites.stream().map(Movie::getTitle).collect(Collectors.toList()));
     }
 }

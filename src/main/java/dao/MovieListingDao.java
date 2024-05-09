@@ -31,7 +31,6 @@ public class MovieListingDao {
         User user = new User(email);
         users.add(user);
         currentUser = user;
-        System.out.println("User registered successfully with email: " + email);
     }
 
     public List<Movie> searchMovies(String keyword) {
@@ -54,15 +53,15 @@ public class MovieListingDao {
 
     public void addToFavorites(Movie movie) {
         if (currentUser == null) {
-            currentUser.addToFavorites(movie);
-            System.out.println("Movie '" + movie.getTitle() + "' added to favorites.");
+            List<Movie> favorites = currentUser.getFavorites();
+            favorites.add(movie);
         }
     }
 
     public void removeFromFavorites(Movie movie) {
         if (currentUser != null) {
-            currentUser.removeFromFavorites(movie);
-            System.out.println("Movie '" + movie.getTitle() + "' removed from favorites.");
+            List<Movie> favorites = currentUser.getFavorites();
+            favorites.remove(movie);
         }
     }
 

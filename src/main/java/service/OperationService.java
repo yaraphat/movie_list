@@ -38,6 +38,7 @@ public class OperationService {
                 System.out.println("Email " + email + " set as current user");
             } else {
                 dao.registerUser(email);
+                System.out.println("User registered successfully with email: " + email);
             }
             ;
         } else {
@@ -116,6 +117,11 @@ public class OperationService {
             String title = scanner.nextLine();
             Movie movie = dao.findMovieByTitle(title);
             if (movie != null) {
+                List<Movie> favorites = dao.getCurrentUser().getFavorites();
+                if (favorites.contains(movie)) {
+                    System.out.println("Movie already added to favorites");
+                    return;
+                }
                 dao.addToFavorites(movie);
                 System.out.println("Movie added to favorites");
             } else {
@@ -146,6 +152,11 @@ public class OperationService {
             String title = scanner.nextLine();
             Movie movie = dao.findMovieByTitle(title);
             if (movie != null) {
+                List<Movie> favorites = dao.getCurrentUser().getFavorites();
+                if (!favorites.contains(movie)) {
+                    System.out.println("Movie not found in favorites");
+                    return;
+                }
                 dao.removeFromFavorites(movie);
                 System.out.println("Movie removed from favorites");
             } else {
