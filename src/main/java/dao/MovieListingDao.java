@@ -34,13 +34,25 @@ public class MovieListingDao {
     }
 
     public List<Movie> searchMovies(String keyword) {
+        return searchMovies(movies, keyword);
+    }
+
+    public List<Movie> searchFavoriteMovies(String keyword) {
+        List<Movie> result = new ArrayList<>();
+        if (currentUser != null && !currentUser.getFavorites().isEmpty()) {
+            result = searchMovies(currentUser.getFavorites(), keyword);
+        }
+        return result;
+    }
+
+    private List<Movie> searchMovies(List<Movie> movieList, String keyword) {
         List<Movie> result = new ArrayList<>();
         if (keyword == null || keyword.isEmpty()) {
-            movies.sort(Comparator.comparing(Movie::getTitle));
-            return movies;
+            movieList.sort(Comparator.comparing(Movie::getTitle));
+            return movieList;
         }
         keyword = keyword.toLowerCase();
-        for (Movie movie : movies) {
+        for (Movie movie : movieList) {
             if (movie.getTitle().toLowerCase().contains(keyword) ||
                     movie.getCast().toString().toLowerCase().contains(keyword) ||
                     movie.getCategory().toLowerCase().contains(keyword)) {
