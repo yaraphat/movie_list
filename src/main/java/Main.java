@@ -41,6 +41,9 @@ public class Main {
                     case 6:
                         service.viewPersonalDetails(scanner);
                         break;
+                    case 7:
+                        service.searchFavoriteMovies(scanner);
+                        break;
                     case 8:
                         printOptions();
                         break;

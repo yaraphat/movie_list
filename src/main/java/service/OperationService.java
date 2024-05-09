@@ -175,4 +175,18 @@ public class OperationService {
         }
     }
 
+    public void searchFavoriteMovies(Scanner scanner) {
+        boolean registered = checkRegistration(scanner);
+        if (registered) {
+            System.out.print("Enter search keyword (title/cast/category): ");
+            String keyword = scanner.nextLine();
+            List<Movie> movies = dao.searchFavoriteMovies(keyword);
+            if (!movies.isEmpty()) {
+                printMovies(movies);
+            } else {
+                System.out.println("No movies found with keyword: " + keyword);
+            }
+        }
+    }
+
 }
