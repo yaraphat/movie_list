@@ -28,6 +28,9 @@ public class Main {
                     case 2:
                         service.searchMovies(scanner);
                         break;
+                    case 3:
+                        service.viewMovieDetails(scanner);
+                        break;
                     case 8:
                         printOptions();
                         break;

@@ -26,6 +26,10 @@ public class Movie {
         return cast != null ? cast : List.of();
     }
 
+    public String getCastStr() {
+        return cast != null ? String.join(", ", cast) : "";
+    }
+
     public String getCategory() {
         return category != null ? category : "";
     }
@@ -36,5 +40,9 @@ public class Movie {
 
     public double getBudget() {
         return budget;
+    }
+
+    public String getBudgetStr() {
+        return String.format("%.0f", budget);
     }
 }

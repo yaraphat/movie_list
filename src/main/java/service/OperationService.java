@@ -11,6 +11,7 @@ import main.java.model.User;
 public class OperationService {
     private final MovieListingDao dao = MovieListingDao.getInstance();
     private static OperationService instance = null;
+    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     private OperationService() {
     }
@@ -55,7 +56,7 @@ public class OperationService {
         }
     }
 
-    public static void printMovies(List<Movie> movies) {
+    public void printMovies(List<Movie> movies) {
         int titleMaxLength = "Title".length();
         int castMaxLength = "Cast".length();
         int categoryMaxLength = "Category".length();
@@ -64,9 +65,9 @@ public class OperationService {
 
         for (Movie movie : movies) {
             titleMaxLength = Math.max(titleMaxLength, movie.getTitle().length());
-            castMaxLength = Math.max(castMaxLength, movie.getCast().toString().length());
-            categoryMaxLength = Math.max(categoryMaxLength, movie.getCast().toString().length());
-            budgetMaxLength = Math.max(budgetMaxLength, String.format("%.0f", movie.getBudget()).length());
+            castMaxLength = Math.max(castMaxLength, movie.getCastStr().toString().length());
+            categoryMaxLength = Math.max(categoryMaxLength, movie.getCategory().length());
+            budgetMaxLength = Math.max(budgetMaxLength, movie.getBudgetStr().length());
             releaseDateMaxLength = Math.max(releaseDateMaxLength, movie.getReleaseDate().toString().length());
         }
 
@@ -80,17 +81,32 @@ public class OperationService {
                 + releaseDateMaxLength + "s |\n", "Title", "Cast", "Category", "Budget", "Release Date");
         System.out.println(separator);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         for (Movie movie : movies) {
-            String budget = String.format("%.0f", movie.getBudget());
             String releaseDate = movie.getReleaseDate() == null ? "" : sdf.format(movie.getReleaseDate());
             System.out.printf(
                     "| %-" + titleMaxLength + "s | %-" + castMaxLength + "s | %-" + categoryMaxLength + "s | %-"
                             + budgetMaxLength + "s | %-" + releaseDateMaxLength + "s |\n",
-                    movie.getTitle(), movie.getCast(), movie.getCategory(), budget, releaseDate);
+                    movie.getTitle(), movie.getCastStr(), movie.getCategory(), movie.getBudgetStr(), releaseDate);
 
             System.out.println(separator);
         }
+    }
+
+    public void viewMovieDetails(Scanner scanner) {
+        System.out.print("Enter movie title: ");
+        String title = scanner.nextLine();
+        if (title != null && !title.isEmpty()) {
+            Movie movie = dao.findMovieByTitle(title);
+            if (movie != null) {
+                System.out.println("Movie Details:");
+                System.out.println("Title: " + movie.getTitle());
+                System.out.println("Cast: " + movie.getCastStr());
+                System.out.println("Category: " + movie.getCategory());
+                System.out.println("Release Date: " + sdf.format(movie.getReleaseDate()));
+                System.out.println("Budget: " + movie.getBudgetStr());
+            }
+        }
+        System.out.println("No movie found with title: " + title);
     }
 
 }

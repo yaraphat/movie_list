@@ -83,6 +83,15 @@ public class MovieListingDao {
         this.currentUser = currentUser;
     }
 
+    public Movie findMovieByTitle(String title) {
+        for (Movie movie : movies) {
+            if (movie.getTitle().equalsIgnoreCase(title)) {
+                return movie;
+            }
+        }
+        return null;
+    }
+
     public static List<Movie> getInitialMovieList() {
         List<Movie> movies = new ArrayList<>();
 
