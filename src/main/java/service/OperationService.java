@@ -1,6 +1,7 @@
 package main.java.service;
 
-import java.text.SimpleDateFormat;
+import static main.java.util.DateUtil.sdf;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +12,6 @@ import main.java.model.User;
 public class OperationService {
     private final MovieListingDao dao = MovieListingDao.getInstance();
     private static OperationService instance = null;
-    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     private OperationService() {
     }
