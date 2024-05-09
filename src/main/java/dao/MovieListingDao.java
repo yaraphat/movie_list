@@ -36,10 +36,15 @@ public class MovieListingDao {
 
     public List<Movie> searchMovies(String keyword) {
         List<Movie> result = new ArrayList<>();
+        if (keyword == null || keyword.isEmpty()) {
+            movies.sort(Comparator.comparing(Movie::getTitle));
+            return movies;
+        }
+        keyword = keyword.toLowerCase();
         for (Movie movie : movies) {
-            if (movie.getTitle().contains(keyword) ||
-                    movie.getCast().contains(keyword) ||
-                    movie.getCategory().contains(keyword)) {
+            if (movie.getTitle().toLowerCase().contains(keyword) ||
+                    movie.getCast().toString().toLowerCase().contains(keyword) ||
+                    movie.getCategory().toLowerCase().contains(keyword)) {
                 result.add(movie);
             }
         }

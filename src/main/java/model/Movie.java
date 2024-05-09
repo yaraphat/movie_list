@@ -19,15 +19,15 @@ public class Movie {
     }
 
     public String getTitle() {
-        return title;
+        return title != null ? title : "";
     }
 
     public List<String> getCast() {
-        return cast;
+        return cast != null ? cast : List.of();
     }
 
     public String getCategory() {
-        return category;
+        return category != null ? category : "";
     }
 
     public Date getReleaseDate() {

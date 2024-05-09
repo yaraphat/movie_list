@@ -25,6 +25,9 @@ public class Main {
                     case 1:
                         service.registerUser(scanner);
                         break;
+                    case 2:
+                        service.searchMovies(scanner);
+                        break;
                     case 8:
                         printOptions();
                         break;
