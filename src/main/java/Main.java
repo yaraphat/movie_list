@@ -31,6 +31,9 @@ public class Main {
                     case 3:
                         service.viewMovieDetails(scanner);
                         break;
+                    case 4:
+                        service.addMovieToFavorites(scanner);
+                        break;
                     case 8:
                         printOptions();
                         break;

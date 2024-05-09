@@ -26,7 +26,7 @@ public class OperationService {
     public void registerUser(Scanner scanner) {
         System.out.print("Enter your email address: ");
         String email = scanner.nextLine();
-        if (email != null && !email.isEmpty()) {
+        if (isValidEmail(email)) {
             User user = dao.getCurrentUser();
             if (user != null && user.getEmail().equals(email)) {
                 System.out.println("User already registered with email: " + email);
@@ -41,7 +41,7 @@ public class OperationService {
             }
             ;
         } else {
-            System.out.println("Email cannot be empty");
+            System.out.println("Please enter a valid email address. Registration incomlete.");
         }
     }
 
@@ -107,6 +107,39 @@ public class OperationService {
             }
         }
         System.out.println("No movie found with title: " + title);
+    }
+
+    public void addMovieToFavorites(Scanner scanner) {
+        boolean registered = checkRegistration(scanner);
+        if (registered) {
+            System.out.println("Enter movie title to add to favorites: ");
+            String title = scanner.nextLine();
+            Movie movie = dao.findMovieByTitle(title);
+            if (movie != null) {
+                dao.addToFavorites(movie);
+                System.out.println("Movie added to favorites");
+            } else {
+                System.out.println("No movie found with title: " + title);
+            }
+        }
+    }
+
+    private boolean checkRegistration(Scanner scanner) {
+        User user = dao.getCurrentUser();
+        if (user == null) {
+            System.out.println("Please register first");
+            registerUser(scanner);
+            user = dao.getCurrentUser();
+            if (user == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isValidEmail(String email) {
+        return email != null
+                && email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
     }
 
 }
