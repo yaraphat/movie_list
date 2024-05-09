@@ -105,6 +105,7 @@ public class OperationService {
                 System.out.println("Category: " + movie.getCategory());
                 System.out.println("Release Date: " + sdf.format(movie.getReleaseDate()));
                 System.out.println("Budget: " + movie.getBudgetStr());
+                return;
             }
         }
         System.out.println("No movie found with title: " + title);
