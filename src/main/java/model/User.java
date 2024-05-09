@@ -22,6 +22,9 @@ public class User {
     }
 
     public String getFavoritesStr() {
+        if(favorites.isEmpty()) {
+            return "No movies found in favorites";
+        }
         List<String> titles = favorites.stream().map(Movie::getTitle).collect(Collectors.toList());
         return String.join(", ", titles);
     }
